@@ -98,7 +98,7 @@ public:
         return  result;
     }
 
-    std::vector<ByteArray> splite(char delimiter);
+    std::vector<ByteArray> split(char delimiter);
 
 private:
     unsigned long m_data_size;

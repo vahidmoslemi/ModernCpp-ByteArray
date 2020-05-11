@@ -98,11 +98,12 @@ void ByteArray::setData(char* t_data, unsigned long t_data_size)
     m_data = t_data;
 }
 
-std::vector<ByteArray> ByteArray::splite(char delimiter)
+std::vector<ByteArray> ByteArray::split(char delimiter)
 {
     std::vector<ByteArray> result;
     unsigned long from=0;
-    for(unsigned long i=0; i<m_data_size;i++)
+	unsigned long i=0;
+    while(i<m_data_size)
     {
         if(m_data[i]==delimiter)
         {
@@ -111,11 +112,12 @@ std::vector<ByteArray> ByteArray::splite(char delimiter)
 
             from = i+1;
         }
+        i++;
     }
-    //if delimiter not found
-    if(from==0)
+    //if data is remained
+    if(from<m_data_size)
     {
-        result.push_back(ByteArray{this->data()});
+        result.push_back(this->mid(from,i-from));
     }
     return result;
 }
