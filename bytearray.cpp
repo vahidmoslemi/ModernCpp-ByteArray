@@ -11,27 +11,31 @@ ByteArray::ByteArray()
 ByteArray::ByteArray(ByteArray& other)
 {
     m_data_size = other.m_data_size;
-    m_data = new char [m_data_size];
+    m_data = new char [m_data_size+1]; //null terminated
+    m_data[m_data_size]='\0';
     std::copy(other.m_data,other.m_data+other.m_data_size,m_data);
 }
 
 ByteArray::ByteArray(ByteArray&& other)
 {
-    m_data_size = other.m_data_size;
+    m_data_size = other.m_data_size + 1;
     m_data = other.m_data;
+    m_data[m_data_size]='\0';
     other.m_data = nullptr;
     other.m_data_size = 0;
 }
 
 ByteArray::ByteArray(unsigned long t_data_size){
     m_data_size = t_data_size;
-    m_data = new char[m_data_size];
+    m_data = new char[m_data_size + 1];
+    m_data[m_data_size]='\0';
 }
 
 ByteArray::ByteArray(const char* t_data) : m_data_size{strlen(t_data)}
 {
-    m_data = new char [m_data_size];
+    m_data = new char [m_data_size + 1];
     std::copy(t_data,t_data+m_data_size,m_data);
+    m_data[m_data_size]='\0';
 }
 
 ByteArray::ByteArray(char* t_data,unsigned long t_data_size) : m_data_size{t_data_size}
@@ -56,8 +60,9 @@ ByteArray& ByteArray::operator=(const ByteArray&  other)
         delete[] m_data;
         m_data=nullptr;
         m_data_size = other.m_data_size;
-        m_data = new char[m_data_size];
+        m_data = new char[m_data_size + 1];
         std::copy(other.m_data,other.m_data + m_data_size,m_data);
+        m_data[m_data_size]='\0';
     }
     return *this;
 }
@@ -81,8 +86,9 @@ void ByteArray::setData(const char* t_data, unsigned long t_data_size)
 {
     delete[] m_data;
     m_data_size = t_data_size;
-    m_data=new char[m_data_size];
+    m_data=new char[m_data_size + 1];
     std::copy(t_data,t_data + m_data_size, m_data);
+    m_data[m_data_size]='\0';
 }
 
 void ByteArray::setData(char* t_data, unsigned long t_data_size)

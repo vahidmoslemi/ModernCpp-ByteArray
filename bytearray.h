@@ -1,6 +1,8 @@
 /*
  * Pure modern C++ ByteArray type implemented as a wrapper over char*
  * Supports move semantics to provide good performance in daily usage
+ * actual data inside a ByteArray is a null terminated char array
+ * m_data_length holds the actual length == strlen(m_data)
  *
  * Written in 2020 by Vahid Moslemi Vayeghan
  *
@@ -79,7 +81,7 @@ public:
      *                  before invoking release method
      * @return
      */
-    const char* data(){
+    const char* data() const{
         return m_data;
     }
 
