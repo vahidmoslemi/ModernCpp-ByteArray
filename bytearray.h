@@ -89,7 +89,7 @@ public:
      * @brief getSize : returns size of the char array which holds data
      * @return
      */
-    unsigned long getSize(){ return m_data_size;}
+    unsigned long getSize() const { return m_data_size;}
 
     ByteArray mid(unsigned long from,unsigned long len)
     {
