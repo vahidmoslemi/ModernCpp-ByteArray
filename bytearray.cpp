@@ -18,9 +18,8 @@ ByteArray::ByteArray(ByteArray& other)
 
 ByteArray::ByteArray(ByteArray&& other)
 {
-    m_data_size = other.m_data_size + 1;
+    m_data_size = other.m_data_size;
     m_data = other.m_data;
-    m_data[m_data_size]='\0';
     other.m_data = nullptr;
     other.m_data_size = 0;
 }
@@ -98,7 +97,7 @@ void ByteArray::setData(char* t_data, unsigned long t_data_size)
     m_data = t_data;
 }
 
-std::vector<ByteArray> ByteArray::split(char delimiter)
+std::vector<ByteArray> ByteArray::split(char delimiter) const
 {
     std::vector<ByteArray> result;
     unsigned long from=0;
@@ -120,4 +119,16 @@ std::vector<ByteArray> ByteArray::split(char delimiter)
         result.push_back(this->mid(from,i-from));
     }
     return result;
+}
+
+ByteArray ByteArray::operator+( const ByteArray &other)
+{
+	//allocate storage to concatinated output
+    ByteArray bytearray_cat(m_data_size+other.m_data_size);
+	
+	//copy first part
+    std::copy(m_data,m_data + m_data_size, bytearray_cat.m_data);
+	//copy second part
+    std::copy(other.m_data,other.m_data + other.m_data_size, bytearray_cat.m_data+m_data_size);
+	return bytearray_cat;
 }

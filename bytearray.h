@@ -42,6 +42,13 @@ public:
     ByteArray& operator=(const ByteArray&  other);
 
     /**
+     * @brief operator +
+     * @param other
+     * @return
+     */
+    ByteArray operator+(const ByteArray &other);
+
+    /**
      * @brief operator = Move Assignment Operator
      * @param other
      * @return
@@ -91,14 +98,14 @@ public:
      */
     unsigned long getSize() const { return m_data_size;}
 
-    ByteArray mid(unsigned long from,unsigned long len)
+    ByteArray mid(unsigned long from,unsigned long len) const
     {
         ByteArray result(len);
         std::copy(m_data+from,m_data+from+len,result.m_data);
         return  result;
     }
 
-    std::vector<ByteArray> split(char delimiter);
+    std::vector<ByteArray> split(char delimiter) const;
 
 private:
     unsigned long m_data_size;
