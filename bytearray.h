@@ -55,6 +55,9 @@ public:
      */
     ByteArray& operator=(ByteArray&&  other);
 
+	bool operator==(ByteArray&  other);
+	bool operator==(const ByteArray&  other);
+	
     /**
      * @brief setData : copy data into the ByteArray
      * @param t_data

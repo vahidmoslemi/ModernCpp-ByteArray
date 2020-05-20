@@ -132,3 +132,30 @@ ByteArray ByteArray::operator+( const ByteArray &other)
     std::copy(other.m_data,other.m_data + other.m_data_size, bytearray_cat.m_data+m_data_size);
 	return bytearray_cat;
 }
+
+bool ByteArray::operator==(ByteArray&  other)
+{
+    bool result = (m_data_size==other.m_data_size);
+
+    unsigned long int i=0;
+    while(result && i<m_data_size)
+    {
+        result = (m_data[i]==other.m_data[i]);
+		i++;
+    }
+    return result;
+}
+
+
+bool ByteArray::operator==(const ByteArray&  other)
+{
+    bool result = (m_data_size==other.m_data_size);
+
+    unsigned long int i=0;
+    while(result && i<m_data_size)
+    {
+        result = (m_data[i]==other.m_data[i]);
+		i++;
+    }
+    return result;
+}

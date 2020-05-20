@@ -20,6 +20,7 @@ data:     	get data as const char*.
 release:  	release data and return pointer to the stored char array.
 getSize:  	get size of the data inside ByteArray object.
 operator+:	concatinate multiple ByteArrays
+operator==	check equality of 2 ByteArrays
 ```
 Note: actual char array inside a ByteArray is null terminated to avoid undefined behavior.
 
@@ -38,8 +39,21 @@ int main(){
   
   ByteArray concat = data_parts[0] + "|" + data_parts[2];
   std::cout<<"new data stream:  "<<concat.data()<<std::endl;
+  
+  auto test = data_parts[0];
+  if(test==data_parts[0])
+	  std::cout<<"EQUAL"<<std::endl;
+  else
+	  std::cout<<"NOT EQUAL"<<std::endl;
+  
+  if(test=="prop1:val2")
+	  std::cout<<"EQUAL"<<std::endl;
+  else
+	  std::cout<<"NOT EQUAL"<<std::endl;
+  
   return 0;
 } 
+
 ```
 
 ## Build Sample Code
