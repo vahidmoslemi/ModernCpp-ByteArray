@@ -39,7 +39,18 @@ ByteArray::ByteArray(const char* t_data) : m_data_size{strlen(t_data)}
 
 ByteArray::ByteArray(char* t_data,unsigned long t_data_size) : m_data_size{t_data_size}
 {
-    m_data = t_data;
+    try {
+        if(t_data_size<=0 || t_data[t_data_size]!='\0')
+        {
+            throw("Invalid cstr data given. ByteArray will be initialized as empty.");
+        }
+        m_data = t_data;
+
+    } catch (const char* ex) {
+        m_data=nullptr;
+        m_data_size=0;
+        throw(ex);
+    }
 }
 
 ByteArray::~ByteArray()

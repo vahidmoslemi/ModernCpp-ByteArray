@@ -1,16 +1,16 @@
 # ModernCpp-ByteArray
 ByteArray implementaion is very frequently needed in embedded device software development and data manipulator applications.
-In such cases you could concern memory leaks, passing parameters to functions and return output from them, and so on.
-Also when you work with other Framesworks to handle some requested features (UI/etc).
+In such cases you could concern memory leaks, passing parameters to functions and return output from them, and so on,
+Specially when you work with other Framesworks to handle some requested features (UI/etc).
 
-Like my faviorate one (Qt) you should be able to handle Qt DataTypes (QString/QByteArray) in your pure C++ logic code section.
+As in my faviorate one (Qt):  you should be able to handle Qt DataTypes (QString/QByteArray) in your pure C++ logic code section.
 
 ## Structure
 To do so I have developed a pure modern C++ ByteArray data type based on char array and have tested in Linux and Android projects.
-At the time it supports construction based on char*, const char* and also move and copy constructors(ByteArray& and ByeArray&&).
+It is going to be a fully functional container, and now supports construction based on char*, const char* and also move and copy constructors(ByteArray& and ByeArray&&).
 I have implemented move constructor and assignment operator to boost run-time performance.
 
-Additionally to the above methods mid, split and concatinating multiple ByteArrays are possible using overloaded + operator.
+In Addition to the above methods, mid, split and concatinating multiple ByteArrays (using operator+) and equality operator(==) has bin implemented.
 
 ### Currently suppored methods:
 ```
@@ -23,7 +23,6 @@ operator+:	concatinate multiple ByteArrays
 operator==	check equality of 2 ByteArrays
 ```
 Note: actual char array inside a ByteArray is null terminated to avoid undefined behavior.
-
 
 ## Usage
 Simply copy files into you project and include "bytearray.h"
@@ -56,7 +55,28 @@ int main(){
 
 ```
 
-## Build Sample Code
+## UnitTesting
+In order to have more applicable sample codes, you can refer to the UnitTest provided by the project (bytearraytest.cpp)
+I have used GoogleTest as my unit testing library for the C++ programming, because it is practical, simple and fast to develop.
+
+### Install GoogleTest on Linux from source
+```sh 
+git clone https://github.com/google/googletest.git
+cd googletest
+mkdir build
+cd build
+cmake ..
+make
+sudo make install
+```
+
+## Build Sample Code (based on UnitTesting)
 ```sh
-g++ bytearray.cpp main.cpp -o test && ./test
+g++  bytearraytest.cpp bytearray.cpp main.cpp -lgtest -lgmock -lpthread -o test  && ./test
+```
+
+## For Qt Developers
+```
+1- GoogleTest is integrated out of the box to the QtCreator. [ReadMore...](https://www.google.com)
+2- You can simply open project file (ModernCpp-ByteArray.pro) in Qt Creator.
 ```
