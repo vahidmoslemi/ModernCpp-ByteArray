@@ -76,7 +76,7 @@ g++  bytearraytest.cpp bytearray.cpp main.cpp -lgtest -lgmock -lpthread -o test 
 ```
 
 ## For Qt Developers
-```
-1- GoogleTest is integrated out of the box to the QtCreator. [ReadMore...](https://www.google.com)
+1- GoogleTest is integrated out of the box to the QtCreator. [ReadMore...](https://doc.qt.io/qtcreator/creator-autotest.html)
+
 2- You can simply open project file (ModernCpp-ByteArray.pro) in Qt Creator.
-```
+
