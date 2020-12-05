@@ -1,7 +1,7 @@
 /*
- * Pure modern C++ ByteArray type implemented as a wrapper over char*
- * Supports move semantics to provide good performance in daily usage
- * actual data inside a ByteArray is a null terminated char array
+ * Pure modern C++ ByteArray type implemented as a wrapper over char*.
+ * Supports move semantics to provide good performance in daily usage.
+ * Actual data inside a ByteArray is a null terminated char array.
  * m_data_length holds the actual length == strlen(m_data)
  *
  * Written in 2020 by Vahid Moslemi Vayeghan
@@ -14,7 +14,7 @@
 #define BYTEARRAY_H
 
 #include<vector>
-
+#include <string>
 class ByteArray
 {
 public:
@@ -32,6 +32,8 @@ public:
     explicit ByteArray(unsigned long t_data_size);
     ByteArray(const char* t_data);
     explicit ByteArray(char* t_data,unsigned long t_data_size);
+    ByteArray(std::string t_str);
+
     ~ByteArray();
 
     /**
@@ -58,6 +60,12 @@ public:
 	bool operator==(ByteArray&  other);
 	bool operator==(const ByteArray&  other);
 	
+    char& operator[](unsigned int index){
+        if(index>=m_data_size)
+            throw "Index OutOf Range";
+        return m_data[index];
+    }
+
     /**
      * @brief setData : copy data into the ByteArray
      * @param t_data
@@ -103,9 +111,12 @@ public:
 
     ByteArray mid(unsigned long from,unsigned long len) const
     {
+        if(from+len >m_data_size)
+            throw("Invalid Boundary");
+
         ByteArray result(len);
         std::copy(m_data+from,m_data+from+len,result.m_data);
-        return  result;
+        return result;
     }
 
     std::vector<ByteArray> split(char delimiter) const;

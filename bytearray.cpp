@@ -53,6 +53,14 @@ ByteArray::ByteArray(char* t_data,unsigned long t_data_size) : m_data_size{t_dat
     }
 }
 
+ByteArray::ByteArray(std::string t_str)
+{
+    m_data_size = t_str.length();
+    m_data = new char[m_data_size+1];
+    m_data[m_data_size]='\0';
+    std::copy(t_str.data(),t_str.data()+m_data_size,m_data);
+}
+
 ByteArray::~ByteArray()
 {
     delete [] m_data;

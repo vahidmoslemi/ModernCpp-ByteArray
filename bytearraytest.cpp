@@ -6,7 +6,7 @@ TEST_F(ByteArrayTest, DefaultEmpty) {
     EXPECT_EQ(data.data(), nullptr);
 }
 
-TEST_F(ByteArrayTest, CostCStrConstructor) {
+TEST_F(ByteArrayTest, ConstCStrConstructor) {
     ByteArray data{"12345678"};
     EXPECT_EQ(data.getSize(), 8);
     EXPECT_EQ(data.data()[7], '8');
@@ -123,4 +123,19 @@ TEST_F(ByteArrayTest, Mid){
     EXPECT_EQ(right_section.getSize(), 4);
     EXPECT_EQ(right_section.data()[3], '4');
     EXPECT_EQ(right_section.data()[0], '1');
+}
+
+TEST_F(ByteArrayTest, StdStringConstructor){
+    std::string mydata="mydata";
+    ByteArray data(mydata);
+    EXPECT_EQ(mydata.data()[0]=='m',true);
+    EXPECT_EQ(mydata.data()[4]=='t',true);
+}
+
+TEST_F(ByteArrayTest, IndexOperator){
+    std::string mydata="mydata";
+    ByteArray data(mydata);
+    EXPECT_EQ(mydata[0]=='m',true);
+    mydata[5]='1';
+    EXPECT_EQ(mydata.data()[5]=='1',true);
 }
