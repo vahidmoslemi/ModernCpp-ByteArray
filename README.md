@@ -80,3 +80,4 @@ g++  bytearraytest.cpp bytearray.cpp main.cpp -lgtest -lgmock -lpthread -o test 
 
 2- You can simply open project file (ModernCpp-ByteArray.pro) in Qt Creator.
 
+# Feel free to use any code snippet, but cite to my github page.
